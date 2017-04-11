@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    .container
+        if(errorMessage)
+            .alert.alert-warning(role='alert')
+                strong  Oh Snap!&nbsp;
+                span=   errorMessage
+        if(message)
+            .alert.alert-success(role='alert')
+                strong  Well Done!&nbsp;
+                span=   message
+        if (result)
+            each field in result
+                .alert.alert-danger(role='alert')= field.msg
+
+        .panel.panel-primary
+            .panel-heading Register Panel
+            .panel-body
+                form(action='/register', method='post')
+                    .form-group
+                        label(for='name') Full Name
+                        |
+                        input#name.form-control(type='text', placeholder='Enter your full name here...', name='name')
+                    .form-group
+                        label(for='username') Username
+                        |
+                        input#username.form-control(type='text', placeholder='Enter your username here...', name='username')
+                    .form-group
+                        label(for='email') Email
+                        |
+                        input#email.form-control(type='email', placeholder='Enter your email here...', name='email')
+                    .form-group
+                        label(for='password') Password
+                        |
+                        input#password.form-control(type='password', placeholder='Enter your password here...', name='password')
+                    .form-group
+                        label(for='passwordAgain') Enter your password again
+                        |
+                        input#passwordAgain.form-control(type='password', placeholder='Enter your password again here...', name='passwordAgain')
+
+                    button.btn.btn-primary(type='submit') Submit
